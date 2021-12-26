@@ -32,6 +32,11 @@ app.get('/api/courses/:id', (req, res) =>
 
 app.post('/api/courses', (req, res) => 
 {
+    if (!req.body.name || req.body.name.length < 3)
+    {
+        res.status(400).send("Bad Request");
+        return;
+    }
     const course = { 
         id: courses.length+1, 
         name: req.body.name
@@ -43,7 +48,20 @@ app.post('/api/courses', (req, res) =>
 app.get('/api/courses/:year/:month', (req, res) =>
 {
     //res.send(req.params);
-    res.send(req.query);
+    res.send(req.params);
+});
+
+app.put('/api/courses/:id', (req, res) =>
+{
+    
+    const course = courses.find(c => c.id === parseInt(req.params.id));
+    if (!course)
+    {
+        res.status(404).send("course not found");
+    }
+    //validation statically or with joi
+    course.name = req.body.name;
+    res.send(course);
 });
 
 //PORT 
