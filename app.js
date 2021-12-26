@@ -12,7 +12,20 @@ app.get('/api/courses', (req, res) =>
     res.send([1,2,3]);
 });
 
-app.listen(3000, function()
+app.get('/api/courses/:id', (req, res) =>
 {
-    console.log("Server Started on port 3000...");
+    res.send(req.params.id);
+});
+
+app.get('/api/courses/:year/:month', (req, res) =>
+{
+    //res.send(req.params);
+    res.send(req.query);
+});
+
+//PORT 
+const port = process.env.PORT || 3000;
+app.listen(port, function()
+{
+    console.log(`Server Started on port ${port}...`);
 });
