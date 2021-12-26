@@ -1,0 +1,22 @@
+{
+  "name": "test-api",
+  "version": "1.0.0",
+  "description": "my first express JS API",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jayyhub/REST_API_in_EXPRESS_JS.git"
+  },
+  "author": "Jawwad",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jayyhub/REST_API_in_EXPRESS_JS/issues"
+  },
+  "homepage": "https://github.com/jayyhub/REST_API_in_EXPRESS_JS#readme",
+  "dependencies": {
+    "express": "^4.17.2"
+  }
+}
