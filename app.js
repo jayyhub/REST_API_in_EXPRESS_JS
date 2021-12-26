@@ -1,6 +1,55 @@
+
 const express = require('express');
 const app = express();
 
+const bodyParser = require('body-parser');
+const cors = require('cors');
+const router = express.Router();
+
+//var db = require("./dboperations");
+var Flight = require("./flight");
+const dboperations = require('./dboperations');
+
+app.use('/api', router);
+app.use(cors());
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded(
+    {
+        extended:true
+    }
+));
+
+router.use((req, res, next) =>
+{
+    console.log("This is a middleware");
+    next();
+});
+
+router.route('/flights').get((req, res) =>
+{
+    dboperations.getFlights().then(result => 
+    {
+        res.send(result);
+    });
+});
+
+router.route('/flights/:id').get((req, res) => 
+{
+    dboperations.getFlightsbyId(parseInt(req.params.id)).then( result =>
+    {
+        if (result[0].length === 0)
+        {
+            res.status(404).send('Flight Not Found');
+            return;
+        }
+
+        res.send(result);
+    });
+});
+
+
+
+/*
 app.use(express.json());
 
 const courses = 
@@ -77,6 +126,7 @@ app.delete('/api/courses/:id', (req, res) =>
 
     res.send(course);
 })
+*/
 
 //PORT 
 const port = process.env.PORT || 3000;
