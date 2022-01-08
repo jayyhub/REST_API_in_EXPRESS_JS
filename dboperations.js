@@ -34,7 +34,7 @@ async function addFlight (flight)
 {
     try
     {
-        console.log("Hello" + flight.Departure_place);
+        //console.log("Hello" + flight.Departure_place);
         
         let pool = await sql.connect(config);
         let newProduct = await pool.request()
