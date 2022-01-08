@@ -1,8 +1,9 @@
 class Flight
 {
-    constructor (Id, Flight_no, Arrival_place, Departure_place, Arrival_date, Departure_date, plane_id)
+    //constructor (Id, Flight_no, Arrival_place, Departure_place, Arrival_date, Departure_date, plane_id)
+    constructor (Flight_no, Arrival_place, Departure_place, Arrival_date, Departure_date, plane_id)
     {
-        this.Id = Id;
+        //this.Id = Id;
         this.Flight_no = Flight_no;
         this.Arrival_place = Arrival_place;
         this.Departure_place = Departure_place;

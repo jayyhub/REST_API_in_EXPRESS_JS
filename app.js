@@ -9,6 +9,7 @@ const router = express.Router();
 //var db = require("./dboperations");
 var Flight = require("./flight");
 const dboperations = require('./dboperations');
+const { request } = require('express');
 
 app.use('/api', router);
 app.use(cors());
@@ -18,6 +19,10 @@ app.use(bodyParser.urlencoded(
         extended:true
     }
 ));
+
+var JsonParser = bodyParser.json()
+var urlencodedParser = bodyParser.urlencoded({ extended: false })
+
 
 router.use((req, res, next) =>
 {
@@ -47,7 +52,26 @@ router.route('/flights/:id').get((req, res) =>
     });
 });
 
+router.route('/flights').post(JsonParser, (request, res) => 
+{
+    let f = {...request.body};
+    //console.log(f);
 
+    dboperations.addFlight(f).then( result => 
+        {
+            res.status(201).json(result)
+        }
+    )
+});
+
+
+/*
+router.route('/flights').post((request, res) => 
+{
+    console.log("Check");
+    console.log(request.body);
+});
+*/
 
 /*
 app.use(express.json());
